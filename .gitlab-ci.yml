@@ -1,2 +1,14 @@
 job:
-  script: 'echo -e "\nNew line!" >> README.md'
+  script: 
+    - git config --global user.email "${GIT_EMAIL}"
+    - git config --global user.name "${GIT_NAME}"
+    - git config --global push.default simple
+    - git fetch --tags
+    - export GIT_TAG=v2.$YEAR-$MONTH.1
+    - msg= "Tag generated for build 1"
+    - if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
+    - echo "$msg" >> version.txt
+    - git add version.txt
+    - git commit -m "Update build version file with 1"
+    - git push
+    - else echo Tag already exists!; fi
