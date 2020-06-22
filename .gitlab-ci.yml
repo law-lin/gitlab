@@ -5,10 +5,10 @@ job:
     - git config --global push.default simple
     - git fetch --tags
     - export GIT_TAG=v2.$YEAR-$MONTH.1
-    - msg="Tag generated for build 1"
+    - msg="Tag generated for build 2"
     - if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
     - echo "$msg" >> version.txt
     - git add version.txt
     - git commit -m "Update build version file with 1"
-    - git push
+    - git push --tags
     - else echo Tag already exists!; fi
