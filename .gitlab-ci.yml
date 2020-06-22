@@ -1,1 +1,2 @@
-echo -e "\nNew line!" >> README.md
+job:
+  script: "echo -e "\nNew line!" >> README.md"
