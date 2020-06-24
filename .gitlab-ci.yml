@@ -2,9 +2,11 @@
 # create a new branch, push changes to new branch and commit
 
 job:
+  before_script:
+    - git config --global user.email "${GITLAB_USER_EMAIL}"
+    - git config --global user.name "${GITLAB_USER_NAME}"
   script:
-    - git config --global user.email "${GIT_EMAIL}"
-    - git config --global user.name "${GIT_NAME}"
+ 
     - git config --global push.default simple
     - if [ `git branch --list f-droid` ]; then 
     - echo "F-Droid branch exists, deleting..."
