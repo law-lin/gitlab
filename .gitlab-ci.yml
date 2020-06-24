@@ -1,14 +1,24 @@
+# if there's a new tag, check if there's a branch called F-Droid in GitLab, then delete it if there is
+# create a new branch, push changes to new branch and commit
+
 job:
-  script: 
+  script:
     - git config --global user.email "${GIT_EMAIL}"
     - git config --global user.name "${GIT_NAME}"
     - git config --global push.default simple
     - git fetch --tags
     - export GIT_TAG=v2.$YEAR-$MONTH.5
     - msg="Tag generated for build 5"
-    - if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
-    - echo "$msg" >> version.txt
+    - git ls-remote --heads 
+    - if [ `git branch --list f-droid` ] then 
+    - echo "F-Droid branch exists, deleting..."
+    - git branch -D f-droid
+    - echo "Creating new F-Droid branch..."
+    - git checkout -b f-droid
+    - echo "new version" >> version.txt
     - git add version.txt
-    - git commit -m "Update build version file with 5"
-    - git push --tags
-    - else echo Tag already exists!; fi
+    - git commit -m "version some_number_here"
+    - git push origin f-droid
+    - else echo "F-Droid branch does not exist!"; fi
+  only:
+    - tags
