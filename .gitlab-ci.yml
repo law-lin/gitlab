@@ -6,9 +6,10 @@ job:
     - git config --global user.email "${GIT_EMAIL}"
     - git config --global user.name "${GIT_NAME}"
     - git config --global push.default simple
-    - if [ `git branch --list f-droid` ] then 
+    - if [ `git branch --list f-droid` ]; then 
     - echo "F-Droid branch exists, deleting..."
-    - git branch -D f-droid; fi
+    - git branch -D f-droid 
+    - fi
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
     - echo "new version" >> version.txt
