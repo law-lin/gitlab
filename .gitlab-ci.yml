@@ -8,13 +8,13 @@ job:
     - git config --global push.default simple
     - if [ `git branch --list f-droid` ] then 
     - echo "F-Droid branch exists, deleting..."
-    - git branch -D f-droid
+    - git branch -D f-droid; fi
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
     - echo "new version" >> version.txt
     - git add version.txt
     - git commit -m "version some_number_here"
     - git push origin f-droid
-    - else echo "F-Droid branch does not exist!"; fi
+    - echo "F-Droid branch does not exist!"
   only:
     - tags
