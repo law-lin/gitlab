@@ -6,6 +6,7 @@ job:
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - git config --global user.name "${GITLAB_USER_NAME}"
   script:
+    - git fetch
     - if [ -n `git rev-parse --verify --quiet f-droid` ]; then 
     - echo "F-Droid branch exists already..."
     - git checkout f-droid
