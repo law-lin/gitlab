@@ -8,7 +8,7 @@ job:
   script:
     - if [ -n `git rev-parse --verify --quiet f-droid` ]; then 
     - echo "F-Droid branch exists, deleting..."
-    - git branch -D f-droid 
+    - git push -d origin f-droid
     - fi
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
