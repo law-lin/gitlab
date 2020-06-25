@@ -15,7 +15,7 @@ job:
     - echo "new version" >> version.txt
     - git add version.txt
     - git commit -m "version some_number_here"
-    - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}" "HEAD:${CI_COMMIT_TAG}"
+    - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
     - echo "F-Droid branch does not exist!"
   only:
     - tags
