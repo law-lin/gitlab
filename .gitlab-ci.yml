@@ -7,12 +7,13 @@ job:
     - git config --global user.name "${GITLAB_USER_NAME}"
   script:
     - if [ -n `git rev-parse --verify --quiet f-droid` ]; then 
-    - echo "F-Droid branch exists, deleting..."
-    - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}" -d origin f-droid
-    - fi
+    - echo "F-Droid branch exists already..."
+    - git checkout f-droid
+    - else
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
-    - echo "new version" >> version.txt
+    - fi
+    - echo "new version" > version.txt
     - git add version.txt
     - git commit -m "version some_number_here"
     - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
