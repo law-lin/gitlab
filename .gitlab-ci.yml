@@ -14,7 +14,7 @@ job:
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
     - fi
-    - echo "new version" > version.txt
+    - echo "version ${CI_PIPELINE_ID}" > version.txt
     - git add version.txt
     - git commit -m "version some_number_here"
     - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
