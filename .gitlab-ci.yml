@@ -6,7 +6,7 @@ job:
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - git config --global user.name "${GITLAB_USER_NAME}"
   script:
-    - if [ `git rev-parse --verify --quiet branch_name` ]; then 
+    - if [ `git rev-parse --verify --quiet f-droid` ]; then 
     - echo "F-Droid branch exists, deleting..."
     - git branch -D f-droid 
     - fi
