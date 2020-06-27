@@ -12,9 +12,9 @@ job:
     - git checkout -b f-droid
     - else
     - echo "F-Droid branch exists already..."
-    - git checkout master
+    - git checkout origin/master
     - git merge -s ours origin/f-droid
-    - git checkout f-droid
+    - git checkout origin/f-droid
     - git merge origin/master
     - fi
     - sed -i "s#versionCode appVersionCode#versionCode $version#" app/build.gradle
