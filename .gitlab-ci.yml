@@ -11,6 +11,7 @@ job:
     - if [ -n `git rev-parse --verify --quiet f-droid` ]; then 
     - echo "F-Droid branch exists already..."
     - git checkout f-droid
+    - git pull
     - else
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
