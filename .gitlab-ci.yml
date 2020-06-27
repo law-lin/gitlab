@@ -6,6 +6,7 @@ job:
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - git config --global user.name "${GITLAB_USER_NAME}"
   script:
+    - var=$(- git describe --tags)
     - git fetch
     - if [ -n `git rev-parse --verify --quiet f-droid` ]; then 
     - echo "F-Droid branch exists already..."
@@ -14,7 +15,7 @@ job:
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
     - fi
-    - echo "version ${CI_PIPELINE_ID}" > version.txt
+    - echo "$var" > version.txt
     - git add version.txt
     - git commit -m "version some_number_here"
     - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
