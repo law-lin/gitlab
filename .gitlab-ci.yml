@@ -15,7 +15,7 @@ job:
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
     - fi
-    - echo "versionCode $var\nversionName $var" > version.txt
+    - echo -e "versionCode $var\nversionName $var" > version.txt
     - git add version.txt
     - git commit -m "update to $var"
     - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
