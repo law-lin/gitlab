@@ -18,8 +18,8 @@ job:
     - git pull
     - fi
     - version=${var:1}
-    - sed -i "s#versionCode appVersionCode#versionCode $version}#" app/build.gradle
-    - sed -i "s#versionName appVersionName#versionName $version}#" app/build.gradle
+    - sed -i "s#versionCode appVersionCode#versionCode $version#" app/build.gradle
+    - sed -i "s#versionName appVersionName#versionName $version#" app/build.gradle
     - git add app/build.gradle
     - git commit -m "update to $var"
     - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
