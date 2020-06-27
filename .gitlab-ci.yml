@@ -1,22 +1,20 @@
-# if there's a new tag, check if there's a branch called F-Droid in GitLab, then delete it if there is
-# create a new branch, push changes to new branch and commit
-
 job:
   before_script:
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - git config --global user.name "${GITLAB_USER_NAME}"
   script:
+    - git fetch
     - var=$(git describe --tags)
     - version=${var:1}
-    - git fetch
     - exists=$(git ls-remote --heads origin f-droid)
     - if [[ -z $exists ]]; then 
     - echo "Creating new F-Droid branch..."
-    - git checkout -b f-droid
+    - git checkout -b f-droid-$var
     - else
     - echo "F-Droid branch exists already..."
+    - git merge -s ours f-droid
     - git checkout f-droid
-    - git reset --hard master
+    - git merge master
     - fi
     - sed -i "s#versionCode appVersionCode#versionCode $version#" app/build.gradle
     - sed -i "s#versionName appVersionName#versionName $version#" app/build.gradle
