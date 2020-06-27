@@ -15,8 +15,10 @@ job:
     - echo "Creating new F-Droid branch..."
     - git checkout -b f-droid
     - fi
-    - echo -e "versionCode $var\nversionName $var" > version.txt
-    - git add version.txt
+    - version=${var:1}
+    - sed -i "s#versionCode appVersionCode#versionCode $version}#" build.gradle
+    - sed -i "s#versionName appVersionName#versionName $version}#" build.gradle
+    - git add build.gradle
     - git commit -m "update to $var"
     - git push "https://${GITLAB_USER_NAME}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
   only:
