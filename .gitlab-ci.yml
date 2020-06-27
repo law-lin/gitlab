@@ -12,7 +12,7 @@ job:
     - git checkout -b f-droid-$var
     - else
     - echo "F-Droid branch exists already..."
-    - git merge -s ours f-droid
+    - git merge -s ours origin/f-droid
     - git checkout f-droid
     - git merge master
     - fi
