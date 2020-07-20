@@ -7,6 +7,10 @@ job:
     - var=$(git describe --tags)
     - version=${var:1}
     - exists=$(git ls-remote --heads origin fdroid)
+    - tags=$(git tag --list | grep "fdroid")
+    - if [[ $tags ]]; then
+    - git tag -d $tags
+    - fi
     - if [[ -n $exists ]]; then
     - git push "https://${GITLAB_USER_LOGIN}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}" --delete fdroid
     - fi
@@ -16,10 +20,6 @@ job:
     - git add app/build.gradle
     - git commit -m "update to $version"
     - git push "https://${GITLAB_USER_LOGIN}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
-    - tags=$(git tag --list | grep "fdroid")
-    - if [[ $tags ]]; then
-    - git tag -d $tags
-    - fi
     - git tag "fdroid-$version"
     - git push --tag "https://${GITLAB_USER_LOGIN}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
     - cat app/build.gradle | grep $version
