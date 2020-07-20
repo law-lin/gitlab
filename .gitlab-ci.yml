@@ -7,7 +7,6 @@ job:
     - var=$(git describe --tags)
     - version=${var:1}
     - exists=$(git ls-remote --heads origin fdroid)
-    - git tag
     - if [[ -n $exists ]]; then
     - git push "https://${GITLAB_USER_LOGIN}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}" --delete fdroid
     - fi
@@ -18,8 +17,6 @@ job:
     - git commit -m "update to $version"
     - git push "https://${GITLAB_USER_LOGIN}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
     - tags=$(git tag | { grep fdroid || true; })
-    - echo $tags
-    - git tag
     - if [[ $tags ]]; then
     - git tag -d $tags
     - fi
