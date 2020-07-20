@@ -19,6 +19,7 @@ job:
     - tags=$(git tag --list | grep "fdroid")
     - if [[ $tags ]]; then
     - git tag -d $tags
+    - fi
     - git tag "fdroid-$version"
     - git push --tag "https://${GITLAB_USER_LOGIN}:3ozBDRjysM2dXsDMN4tX@${CI_REPOSITORY_URL#*@}"
     - cat app/build.gradle | grep $version
