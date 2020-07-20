@@ -7,7 +7,7 @@ job:
     - var=$(git describe --tags)
     - version=${var:1}
     - exists=$(git ls-remote --heads origin fdroid)
-    - tags=$(git tag --list | grep "fdroid")
+    - tags=$(git tag --list | grep fdroid)
     - if [[ $tags ]]; then
     - git tag -d $tags
     - fi
